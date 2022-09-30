@@ -12,9 +12,8 @@
                 <div class="col-ms-12 mb-3">
                      <select class="" aria-label="Default select example" name="category_id">
                         <option >Select a Category</option>
-                        <option value="{{ $product->category['id'] }}">{{ $product->category['name'] }}</option>
                         @foreach ($category as $item)
-                        <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                        <option {{ $item['id'] == $product->category['id'] ? "selected" : ""}}  value=" {{ $item['id'] }}">{{ $item['name'] }}</option>
                         @endforeach
                      </select>
                 </div>

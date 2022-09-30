@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
     public function index(){
-        $data['product'] = Product::where('trending','1')->take(15)->get();
+        $data['product'] = Product::where('trending',1)->take(15)->get();
         return view('frontend.index')->with($data);
     }
 }
