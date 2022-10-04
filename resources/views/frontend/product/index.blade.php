@@ -1,88 +1,5 @@
 @extends('layouts.front')
 @section('content')
-<main class="content flex-fill">
-  <section>
-    <button
-      aria-controls="sidebar"
-      data-bs-toggle="offcanvas"
-      data-bs-target=".sidebar"
-      aria-label="Button Hamburger"
-      class="sidebarOffcanvas mb-5 btn p-0 border-0 d-flex d-lg-none"
-    >
-      <i class="fa-solid fa-bars"></i>
-    </button>
-    <nav class="nav-content gap-5">
-      @if (Auth::check())
-              <div class="d-flex gap-3 align-items-center">
-                @if (!Auth::user()->image)
-                <img
-                  src="./assets/images/photo.webp"
-                  alt="Photo Profile"
-                  class="photo-profile"
-                />
-                @else
-                <img
-                src="{{ asset('storage/'.Auth::user()->image) }}"
-                alt="Photo Profile"
-                class="photo-profile"
-              />
-                @endif
-                <div>
-                    <p class="title-content mb-2">Welcome, {{ Auth::user()->name }}</p>
-                    @if (!Auth::user()->addres or !Auth::user()->image or !Auth::user()->nohp)  
-                      <p class="subtitle-content">
-                          Finish your profile.
-                          <a href="#" class="btn-link">Edit now</a>
-                      </p>
-                    @else
-                    @endif
-                </div>
-              </div>
-
-              <div class="search-wrapper">
-                <div class="search-bar flex-fill">
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Search shoes"
-                  />
-                </div>
-                  <form action="{{ route('logout') }}" method="POST">
-                   @csrf
-                   <button type="submit" class="btn rounded-5 bg-primary text-white">
-                    Logout
-                    </button>
-                  </form>
-              </div>
-          @else
-                <div class="d-flex gap-3 align-items-center">
-                  <div>
-                      <p class="title-content mb-2">Welcome to MyStore</p>
-                  </div>
-                </div>
-          
-                <div class="search-wrapper">
-                  <div class="search-bar flex-fill">
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Search shoes"
-                    />
-                  </div>
-                  <a href="{{ route('login') }}">
-                    <button
-                      class="btn rounded-5 bg-primary text-white"
-                    >
-                    Login
-                    </button>
-                  </a>
-                  </a>
-                </div>
-
-          @endif
-    </nav>
-  </section>
-
   <section class="d-flex flex-column gap-4">
     <div class="d-flex justify-content-between align-items-center gap-3">
       <h4 class="title-section-content">product recommendation</h4>
@@ -90,12 +7,12 @@
     </div>
     <div class="d-flex gap-4 flex-wrap">
       @foreach ($product as $item)
+      <a href="/product/{{ $item['slug'] }}" class="nav-link">
        <div class="product-card">
         <img
           src="{{ asset('storage/'.$item['image']) }}"
+          class="product-img"
           alt="Nike Red"
-          width="260"
-          height="180"
         />
         <div class="product-detail pt-3">
           <div>
@@ -103,9 +20,8 @@
             <p class="title-detail">{{ $item['name'] }}</p>
           </div>
           <button
-            class="btn btn-fav active"
+            class="btn btn-fav"
             aria-label="Button Favorite"
-            onclick="handleFavorite(this)"
           >
             <svg fill="currentColor">
               <path
@@ -124,19 +40,19 @@
             <p class="price-detail">{{ $item['selling_price'] }}</p>
           </div>
           <button
-            class="buy-product button btn-rounded active"
-            onclick="handleBuy(this)"
+            class="buy-product button btn-rounded"
           >
             Buy Now
           </button>
         </div>
       </div>
+    </a>
     @endforeach
     </div>
   </section>
 
   <section class="d-flex flex-column gap-4 mb-5">
-    <h4 class="title-section-content">Best Store In This Month</h4>
+    <h4 class="title-section-content">Category</h4>
     <div class="d-flex gap-4 flex-wrap">
       <div class="store-card">
         <img
@@ -157,10 +73,7 @@
         <div class="store-name">
           <div>
             <p class="title-store">
-              Adidas Store
-              <span
-                ><img src="./assets/icons/ic_badge.svg" alt="Icon Badge"
-              /></span>
+              Product Digital
             </p>
             <p class="username-store">@adidasindonesia</p>
           </div>
@@ -210,10 +123,7 @@
         <div class="store-name">
           <div>
             <p class="title-store">
-              Puma Store
-              <span
-                ><img src="./assets/icons/ic_badge.svg" alt="Icon Badge"
-              /></span>
+              Peralatan Sekolah
             </p>
             <p class="username-store">@pumaid</p>
           </div>
@@ -246,5 +156,4 @@
       </div>
     </div>
   </section>
-</main>
 @endsection

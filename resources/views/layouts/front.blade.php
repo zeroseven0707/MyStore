@@ -21,8 +21,11 @@
     ></script>
   </head>
   <body>
-@include('layouts.inc.frontnavbar')
+@include('layouts.inc.frontSidebar')
+<main class="content flex-fill">
+@include('layouts.inc.frontNavbar')
     @yield('content')
+</main>
     <script src="{{ asset('js/index.js') }}"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
