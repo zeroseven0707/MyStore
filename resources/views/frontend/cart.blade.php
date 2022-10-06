@@ -23,11 +23,11 @@
             <hr>  
                 @endforeach
         </div>
-        @foreach ($total as $item)
         <div class="card-footer d-flex">
+            @foreach ($total as $item)
             <p>Total Price : {{ $item['total'] }}</p> <a href="{{ route('detrans') }}" class="ms-auto"><button class="btn btn-success">Checkout</button></a>
+            @endforeach
         </div>
-        @endforeach
     </div>
 </section>
 

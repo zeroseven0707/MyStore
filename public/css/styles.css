@@ -9,7 +9,10 @@
     font-family: "Poppins", sans-serif;
     margin-bottom: 0 !important;
 }
-
+.hover1:hover {
+    background-color: #0b5ed7;
+    zoom: 105%;
+}
 .fs-18 {
     font-size: 18px;
 }

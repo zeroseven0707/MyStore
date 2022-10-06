@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\ProductController as UserProductController;
-use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Auth;
@@ -23,15 +22,16 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/',[UserProductController::class, 'index'])->name('dashboard');
 Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('detail');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/explore', [HomeController::class, 'explore'])->name('explore');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/cart/in/{id}', [CartController::class, 'store']);
-Route::get('/delete/{id}', [CartController::class, 'destroy']);
-Route::get('/detail-transaksi', [CartController::class, 'detrans'])->name('detrans');
-Route::get('/Profile', [UserProductController::class, 'profile'])->name('profile');
-Route::post('/checkout', [UserProductController::class, 'checkout'])->name('checkout');
+Route::middleware(['auth', 'isUser'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/in/{id}', [CartController::class, 'store']);
+    Route::get('/delete/{id}', [CartController::class, 'destroy']);
+    Route::get('/detail-transaksi', [CartController::class, 'detrans'])->name('detrans');
+    Route::get('/edit-profile', [UserProductController::class, 'editprofile'])->name('editprofile');
+    Route::post('/upate-profile', [UserProductController::class, 'updateprofile'])->name('updateprofile');
+    Route::post('/checkout', [UserProductController::class, 'checkout'])->name('checkout')->middleware('isComplete');
+});
 
  Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', "Admin\FrontendController@index");

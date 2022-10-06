@@ -7,6 +7,7 @@
     </div>
     <div class="d-flex gap-4 flex-wrap">
       @foreach ($product as $item)
+      <a href="/product/{{ $item['slug'] }}" class="nav-link">
        <div class="product-card">
         <img
           src="{{ asset('storage/'.$item['image']) }}"
@@ -47,6 +48,7 @@
           </button>
         </div>
       </div>
+</a>
     @endforeach
     </div>
   </section>

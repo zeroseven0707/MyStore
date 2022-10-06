@@ -10,6 +10,7 @@ class DetailTransaksi extends Model
     use HasFactory;
     protected $fillable = [
         'code_inv',
+        'harga_total',
         'user_id',
         'cart_id',
         'status',

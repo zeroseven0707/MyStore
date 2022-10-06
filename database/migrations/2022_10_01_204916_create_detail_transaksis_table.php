@@ -18,6 +18,7 @@ class CreateDetailTransaksisTable extends Migration
             $table->string('code_inv');
             $table->foreignId('user_id');
             $table->foreignId('cart_id');
+            $table->string('harga_total');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

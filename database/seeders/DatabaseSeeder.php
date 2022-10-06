@@ -20,14 +20,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'sihab',
             'email' => 'sihab@gmail.com',
             'password' => bcrypt(12345678),
-            'image' => 'post/user/superman.jpeg',
+            'image' => 'post/user/profile.png',
             'role_as' => true,
         ]);
         User::create([
             'name' => 'nabilah',
             'email' => 'nabilah@gmail.com',
             'password' => bcrypt('nabilahsri'),
-            'image' => 'post/user/thor.jpeg',
+            'image' => 'post/user/profile.png',
         ]);
         Category::create([
             'id' => 1,
