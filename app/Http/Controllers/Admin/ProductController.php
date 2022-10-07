@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -19,18 +20,17 @@ class ProductController extends Controller
         return view('admin.product.add')->with($data);
     }
     public function insert(Request $request){
+        $slug = Str::random(40);
         Product::create([
             'category_id' =>$request->category_id,
             'name' =>$request->name,
-            'slug' =>$request->slug,
+            'slug' =>$slug,
             'small_description' =>$request->description,
             'description' =>$request->description,
-            'status' =>$request->status == TRUE ? '1' :'0',
             'trending' =>$request->trending == TRUE ? '1' :'0',
             'image' =>$request->file('image')->store('post/product'),
             'original_price' =>$request->original_price,
             'selling_price' =>$request->selling_price,
-            'tax' =>$request->tax,
             'qty' =>$request->qty,
             'meta_title' =>$request->meta_title,
             'meta_keywords' =>$request->meta_keywords,
@@ -51,18 +51,17 @@ class ProductController extends Controller
                 File::delete($path);
             }
         }
+        $slug = Str::random(40);
         $product->update([
             'category_id' =>$request->category_id,
             'name' =>$request->name,
-            'slug' =>$request->slug,
+            'slug' =>$slug,
             'small_description' =>$request->description,
             'description' =>$request->description,
-            'status' =>$request->status == TRUE ? '1' :'0',
             'trending' =>$request->trending == TRUE ? '1' :'0',
             'image' =>$request->file('image')->store('post/product'),
             'original_price' =>$request->original_price,
             'selling_price' =>$request->selling_price,
-            'tax' =>$request->tax,
             'qty' =>$request->qty,
             'meta_title' =>$request->meta_title,
             'meta_keywords' =>$request->meta_keywords,

@@ -13,11 +13,13 @@ class Category extends Model
         'name',
         'slug',
         'description',
-        'status',
         'popular',
         'image',
         'meta_title',
         'meta_descrip',
         'meta_keywords',
     ];
+    public function product(){
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
 }

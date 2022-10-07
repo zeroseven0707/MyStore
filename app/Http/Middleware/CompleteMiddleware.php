@@ -20,7 +20,7 @@ class CompleteMiddleware
         if (Auth::check()) {
             if (Auth::user()->role_as == '0') {
                 if (!Auth::user()->firstname OR !Auth::user()->lastname OR !Auth::user()->addres1 OR !Auth::user()->addres2 OR !Auth::user()->city OR !Auth::user()->state OR !Auth::user()->country OR !Auth::user()->nohp) {
-                    return redirect('edit-profile')->with('error','please complete the profile');
+                    return back()->with('error','please complete the profile');
                 }else {
                     return $next($request);
                 }

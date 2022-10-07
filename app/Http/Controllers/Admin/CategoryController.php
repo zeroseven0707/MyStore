@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -17,11 +18,11 @@ class CategoryController extends Controller
         return view('admin.category.add');
     }
     public function insert(Request $request){
+        $slug = Str::random(40);
         $category = Category::create([
             'name' =>$request->name,
-            'slug' =>$request->slug,
+            'slug' =>$slug,
             'description' =>$request->description,
-            'status' =>$request->status == TRUE ? '1' :'0',
             'popular' =>$request->popular == TRUE ? '1' :'0',
             'image' =>$request->file('image')->store('post/category'),
             'meta_title' =>$request->meta_title,
@@ -42,11 +43,11 @@ class CategoryController extends Controller
                 File::delete($path);
             }
         }
+        $slug = Str::random(40);
         $category->update([
             'name' =>$request->name,
-            'slug' =>$request->slug,
+            'slug' =>$slug,
             'description' =>$request->description,
-            'status' =>$request->status == TRUE ? '1' :'0',
             'popular' =>$request->popular == TRUE ? '1' :'0',
             'image' =>$request->file('image')->store('post/category'),
             'meta_title' =>$request->meta_title,

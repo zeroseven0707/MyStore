@@ -18,8 +18,6 @@ class Product extends Model
         'selling_price',
         'image',
         'qty',
-        'tax',
-        'status',
         'trending',
         'meta_title',
         'meta_keywords',

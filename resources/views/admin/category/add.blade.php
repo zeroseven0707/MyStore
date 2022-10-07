@@ -12,17 +12,9 @@
                     <label for="">Name</label>
                     <input type="text" class="form-control" name="name" id="">
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Slug</label>
-                    <input type="text" class="form-control" name="slug" id="">
-                </div>
                 <div class="col-md-12 mb-3">
                     <label for="">Description</label>
                     <textarea name="description" rows="3" class="form-control"></textarea>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Status</label>
-                        <input type="checkbox" name="status">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="">Popular</label>

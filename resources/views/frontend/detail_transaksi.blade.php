@@ -1,5 +1,10 @@
 @extends('layouts.front')
 @section('content')
+@if ($message = session()->get('error'))    
+<div class="alert alert-danger" role="alert">
+  {{ $message }}
+</div>
+@endif
 <div class="row row-cols-1">
     <div class="col-md-7">
     <div class="card">
@@ -46,11 +51,8 @@
                         <label for="country">Country :</label>
                         <input type="text" name="country" class="form-control" id="country" value="{{ $item['country'] }}">
                     </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                    
                 </div>
+                <button type="submit" class="btn btn-primary w-100 mt-4">Simpan</button>
                 @endforeach
             </form>
         </div>
@@ -70,13 +72,15 @@
         @foreach ($cart as $item)
         <tr>
             <td>{{ $item->product['name'] }}</td>
-            <td>{{ $item['qty'] }}</td>
+            <td>{{ $item['tqty'] }}</td>
             <td>{{ $item->product['selling_price'] }}</td>
         </tr>
         @endforeach
         <tr>
             <th colspan="2">Total</th>
-            <th>{{ total() }}</th>
+            @foreach ($total as $item)
+            <th>{{ $item['total'] }}</th>
+            @endforeach
         </tr>
     </table>
     <hr>

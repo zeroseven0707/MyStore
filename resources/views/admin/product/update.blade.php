@@ -21,10 +21,6 @@
                     <label for="">Name</label>
                     <input type="text" class="form-control" name="name" id="" value="{{ $product['name'] }}">
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Slug</label>
-                    <input type="text" class="form-control" name="slug" id="" value="{{ $product['slug'] }}">
-                </div>
                 <div class="col-md-12 mb-3">
                     <label for="">Description</label>
                     <textarea name="description" rows="3" class="form-control">{{ $product['description'] }}</textarea>
@@ -42,16 +38,8 @@
                     <input type="number" name="selling_price" class="form-control" id="" value="{{ $product['selling_price'] }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="">Tax</label>
-                    <input type="number" name="tax" class="form-control" id="" value="{{ $product['tax'] }}">
-                </div>
-                <div class="col-md-6 mb-3">
                     <label for="">Quantity</label>
                     <input type="number" name="qty" class="form-control" id="" value="{{ $product['qty'] }}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Status</label>
-                        <input type="checkbox" {{ $product['status'] == '1' ? 'checked':'' }} name="status">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="">Trending</label>

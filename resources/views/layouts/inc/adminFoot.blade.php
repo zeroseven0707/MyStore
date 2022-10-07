@@ -3,23 +3,28 @@
       <nav class="float-left">
         <ul>
           <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
+            <a href="https://github.com/zeroseven0707">
+              GitHub
             </a>
           </li>
           <li>
-            <a href="https://creative-tim.com/presentation">
+            <a href="https://wa.me/+6281394454900">
               About Us
             </a>
           </li>
           <li>
-            <a href="http://blog.creative-tim.com">
-              Blog
+            <a href="https://github.com/zeroseven0707/MyImaginations">
+              My Imagination
             </a>
           </li>
           <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
+            <a href="https://rpl1-sihabudin.000webhostapp.com/">
+              Game
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/zeroseven0707/MyStore">
+              My Store
             </a>
           </li>
         </ul>
@@ -29,7 +34,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+        <a href="https://github.com/zeroseven0707" target="_blank">M sihabudin</a> for a better web.
       </div>
     </div>
   </footer>

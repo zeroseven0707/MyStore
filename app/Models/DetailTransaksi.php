@@ -15,4 +15,8 @@ class DetailTransaksi extends Model
         'cart_id',
         'status',
     ];
+
+    public function cart(){
+        return $this->belongsTo(Cart::class,'cart_id','id');
+    }
 }

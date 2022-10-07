@@ -1,9 +1,38 @@
 @extends('layouts.front')
 @section('content')
-  <section class="d-flex flex-column gap-4">
-    <div class="d-flex justify-content-between align-items-center gap-3">
+<section class="d-flex flex-column gap-4 mb-5">
+  <h4 class="title-section-content">Category</h4>
+  <div class="row row-cols-2 row-cols-md-3 g-4">
+    @foreach ($category as $item)
+    <a href="product-category/{{ $item['slug'] }}" class="text-decoration-none">
+    <div class="col">
+      <img
+        src="{{ asset('storage/'.$item['image']) }}"
+        alt="Adidas Store"
+        style="width: 100%; height:200px;"
+      />
+      <div class="store-logo-wrapper">
+          <img
+            src="{{ asset('storage/'.$item['image']) }}"
+            alt="Adidas Logo"
+            class="store-logo-circle"
+          />
+      </div>
+      <div class="text-center">
+        <div>
+          <p class="title-store">
+            {{ $item['name'] }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+    @endforeach
+  </div>
+
+    <div class="d-flex justify-content-between align-items-center gap-3 mt-5">
       <h4 class="title-section-content">product recommendation</h4>
-      <a href="#" class="btn-link">View All</a>
+      <a href="/explore" class="btn-link">View All</a>
     </div>
     <div class="d-flex gap-4 flex-wrap">
       @foreach ($product as $item)
@@ -48,112 +77,6 @@
       </div>
     </a>
     @endforeach
-    </div>
-  </section>
-
-  <section class="d-flex flex-column gap-4 mb-5">
-    <h4 class="title-section-content">Category</h4>
-    <div class="d-flex gap-4 flex-wrap">
-      <div class="store-card">
-        <img
-          src="./assets/images/adidas.png"
-          alt="Adidas Store"
-          width="410"
-          height="100"
-        />
-        <div class="store-logo-wrapper">
-          <div class="store-logo-circle">
-            <img
-              src="./assets/images/adidas_logo.png"
-              alt="Adidas Logo"
-              class="store-logo"
-            />
-          </div>
-        </div>
-        <div class="store-name">
-          <div>
-            <p class="title-store">
-              Product Digital
-            </p>
-            <p class="username-store">@adidasindonesia</p>
-          </div>
-          <div class="d-flex gap-3 align-items-center">
-            <a href="#" class="btn-link"> Visit Store </a>
-            <button
-              class="button btn-follow active rounded-pill"
-              onclick="handleFollow(this)"
-            >
-              Following
-            </button>
-          </div>
-        </div>
-        <div class="store-detail">
-          <div class="section-detail">
-            <h6>1.569</h6>
-            <p>Total shoes</p>
-          </div>
-          <div class="vertical-line"></div>
-          <div class="section-detail">
-            <h6>5.2M</h6>
-            <p>Total followers</p>
-          </div>
-          <div class="vertical-line"></div>
-          <div class="section-detail">
-            <h6>56</h6>
-            <p>Exclusive Shoe</p>
-          </div>
-        </div>
-      </div>
-      <div class="store-card">
-        <img
-          src="./assets/images/puma.png"
-          alt="Puma Store"
-          width="410"
-          height="100"
-        />
-        <div class="store-logo-wrapper">
-          <div class="store-logo-circle">
-            <img
-              src="./assets/images/puma_logo.png"
-              alt="Puma Logo"
-              class="store-logo"
-            />
-          </div>
-        </div>
-        <div class="store-name">
-          <div>
-            <p class="title-store">
-              Peralatan Sekolah
-            </p>
-            <p class="username-store">@pumaid</p>
-          </div>
-          <div class="d-flex gap-3 align-items-center">
-            <a href="#" class="btn-link"> Visit Store </a>
-            <button
-              class="button btn-follow rounded-pill"
-              onclick="handleFollow(this)"
-            >
-              +Follow
-            </button>
-          </div>
-        </div>
-        <div class="store-detail">
-          <div class="section-detail">
-            <h6>1.362</h6>
-            <p>Total shoes</p>
-          </div>
-          <div class="vertical-line"></div>
-          <div class="section-detail">
-            <h6>5.7M</h6>
-            <p>Total followers</p>
-          </div>
-          <div class="vertical-line"></div>
-          <div class="section-detail">
-            <h6>76</h6>
-            <p>Exclusive Shoe</p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 @endsection

@@ -2,7 +2,8 @@
 @section('content')
   <section class="d-flex flex-column gap-4">
     <div class="d-flex gap-5 flex-wrap">
-      @foreach ($product as $item)
+      @foreach ($product as $category)
+      @foreach ($category->product as $item)
       <a href="/product/{{ $item['slug'] }}" class="nav-link">
        <div class="product-card">
         <img
@@ -45,6 +46,8 @@
         </div>
       </div>
 </a>
+          
+@endforeach
     @endforeach
     </div>
   </section>

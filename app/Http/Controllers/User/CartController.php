@@ -81,6 +81,7 @@ class CartController extends Controller
     public function detrans()
     {
         $data['addres'] = User::where('id',Auth::id())->get();
+        $data['total'] = AddToCart::where('user_id',Auth::id())->where('status',false)->select("*", DB::raw('SUM(price) as total'))->groupBy('user_id')->get();
         $data['cart'] = AddToCart::where('user_id',Auth::id())->where('status',false)->select("*", DB::raw('SUM(qty) as tqty'))->groupBy('product_id')->get();
         return view('frontend.detail_transaksi')->with($data);
     }

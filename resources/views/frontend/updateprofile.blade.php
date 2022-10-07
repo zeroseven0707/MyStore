@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.profile')
 @section('content')
 <style>
     body {
@@ -80,18 +80,20 @@ h1 small {
   background-position: center;
 }
 </style>
-<form action="{{ route('updateprofile') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('updateprofile') }}" method="post" enctype="multipart/form-data" class="">
     @csrf
     @foreach ($addres as $item)
     <div class="container">
         <div class="avatar-upload">
             <div class="avatar-edit">
                 <input type='file' name="image" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                <label for="imageUpload"></label>
+                <label for="imageUpload">Edit</label>
             </div>
             <div class="avatar-preview">
-                <div id="imagePreview" style="background-image: url('{{ asset('storage/'.$item['image']) }}');">
-                </div>
+                <div id="imagePreview" style="background-image: url('{{ asset('storage/'.$item['image']) }}');"></div>
+            </div>
+            <div class="text-center mt-3">
+              <b class="text-center">{{ $item['firstname']}} {{ $item['lastname']}}</b>
             </div>
         </div>
     </div>
@@ -132,11 +134,8 @@ h1 small {
             <label for="country">Country :</label>
             <input type="text" name="country" class="form-control" id="country" value="{{ $item['country'] }}">
         </div>
-        <div class="col">
-            <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-        
-    </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-4">Simpan</button>
     @endforeach
 </form>
 @endsection

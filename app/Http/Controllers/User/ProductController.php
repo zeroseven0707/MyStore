@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\AddToCart;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\DetailTransaksi;
 use App\Models\Product;
 use App\Models\User;
@@ -18,34 +19,49 @@ class ProductController extends Controller
 {
     public function index(){
         $data['product'] = Product::where('trending',1)->take(6)->get();
+        $data['category'] = Category::where('popular',1)->take(6)->get();
         return view('frontend.product.index')->with($data);
+    }
+    public function searchproduct(Request $request){
+        $cari = '%'.$request->tcari.'%';
+        $data['product'] = Product::where('name','like',$cari)
+        ->orWhere('meta_keywords','like',$cari)
+        ->get();
+        $data['category'] = Category::where('name','like',$cari)
+        ->orWhere('meta_keywords','like',$cari)
+        ->get();
+        return view('frontend.product.index')->with($data);
+    }
+    public function searchproductexplore(Request $request){
+        $cari = '%'.$request->tcari.'%';
+        $data['product'] = Product::where('name','like',$cari)
+        ->orWhere('meta_keywords','like',$cari)
+        ->get();
+        return view('frontend.product.explore')->with($data);
     }
     public function detail($slug){
         $product['product'] = Product::where('slug',$slug)->get();
         return view('frontend.product.detail_product')->with($product);
     }
     public function profile(Request $request){
-      $user =  User::where('user_id',Auth::id())->update([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'nohp' => $request->nohp,
-            'email' => $request->email,
-            'addres1' => $request->addres1,
-            'addres2' => $request->addres2,
-            'city' => $request->city,
-            'state' => $request->state,
-            'country' => $request->country,
-        ]);
         $password = $request->password;
-        if ($user) {
-            if (Hash::check($password, $user->password)) {
-                return back()->with('message','berhasil verifikasi');
-            }else {
-                return back()->with('message','Gagal, Password Salah');
-            }
-        }else{
-            return back()->with('message','gagal update profile');
-        }
+        $user = User::where('id',Auth::id())->first();
+        if (Hash::check($password, $user->password)) {
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'nohp' => $request->nohp,
+                'email' => $request->email,
+                'addres1' => $request->addres1,
+                'addres2' => $request->addres2,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+        ]);
+        return back()->with('success','updated profile succeess!!!');
+    }else {
+        return back()->with('error','password salah!!!');
+    }
     }
     public function checkout(Request $request){
         $idcart = Cart::where('user_id',Auth::id())->where('status',false)->first();
@@ -125,5 +141,13 @@ class ProductController extends Controller
             
             $snapToken = \Midtrans\Snap::getSnapToken($params);
             return view('indexbarang');
+    }
+    public function yourorder(){
+        $data['transaksi'] = DetailTransaksi::where('user_id',Auth::id())->orderBy('created_at','desc')->get();
+        return view('frontend.yourorder')->with($data);
+    }
+    public function categoryall($slug){
+        $data['product'] = Category::where('slug',$slug)->get();
+        return view('frontend.product.categoryproduct')->with($data);
     }
 }

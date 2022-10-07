@@ -17,15 +17,13 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->bigInteger('category_id');
             $table->string('name');
-            $table->string('slug');
+            $table->text('slug');
             $table->mediumText('small_description');
             $table->longText('description');
             $table->string('original_price');
             $table->string('selling_price');
             $table->string('image');
             $table->string('qty');
-            $table->string('tax');
-            $table->tinyInteger('status');
             $table->tinyInteger('trending');
             $table->mediumText('meta_title');
             $table->mediumText('meta_keywords');

@@ -12,7 +12,7 @@ class Cart extends Model
         'user_id',
         'status',
     ];
-    public function adtocart(){
-        return $this->hasMany(AddToCart::class,'id','cart_id');
+    public function addtocart(){
+        return $this->hasMany(AddToCart::class, 'cart_id', 'id');
     }
 }

@@ -20,10 +20,6 @@
                     <label for="">Name</label>
                     <input type="text" class="form-control" name="name" id="">
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Slug</label>
-                    <input type="text" class="form-control" name="slug" id="">
-                </div>
                 <div class="col-md-12 mb-3">
                     <label for="">Description</label>
                     <textarea name="description" rows="3" class="form-control"></textarea>
@@ -41,16 +37,8 @@
                     <input type="number" name="selling_price" class="form-control" id="">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="">Tax</label>
-                    <input type="number" name="tax" class="form-control" id="">
-                </div>
-                <div class="col-md-6 mb-3">
                     <label for="">Quantity</label>
                     <input type="number" name="qty" class="form-control" id="">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="">Status</label>
-                        <input type="checkbox" name="status">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="">Trending</label>
